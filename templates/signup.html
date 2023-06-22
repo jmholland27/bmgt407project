@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %}Sign Up{% endblock %}
+
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/login.css" rel="stylesheet">
+    <link href="/static/styles/navbar-styles.css" rel="stylesheet">
+{% endblock %}
+
+{# Include page content #}
+{% block page_content %}
+<form action="{{ url_for('signup') }}" method="post">
+    <div class="signup-background">
+        <!-- Page content and header -->
+        <div class="header">
+            <h1 class="header">Signup</h1>
+        </div>
+
+        <!-- Input form to add new user information -->
+        <div class="new-profile"></div>
+            <!-- First name field -->
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
+            </div>
+
+        <!-- Last name field -->
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <!-- Email field -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="employee@para.com" required>
+            </div>
+
+            <!-- Phone field -->
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="5555555555" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
+            </div>
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="*****" required>
+            </div>
+
+        <!-- User Type Selection Field -->
+        <div class="mb-3">
+        <label for="usertype" class="form-label">User Type</label>
+        <select name="usertype" id="usertype" class="form-select form-select-md" aria-label=".form select-md example" required>
+            <option value="">---User Type---</option>
+            {% for usertype in user_types %}
+            <option value="{{usertype}}">{{ usertype }}</option>
+        {% endfor %}
+        </select>
+        </div>
+
+        <!-- Create profile button -->
+        <button type="submit" class="login-button">Sign Up</button>
+    </div>
+
+</form>
+{% endblock %}

@@ -1,0 +1,168 @@
+.dashboard-background{
+    margin: auto;
+    margin-top: 30px;
+    width: 95%;
+    height: 550px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section{
+    width: 50%;
+    height: 100%;
+}
+
+.right-section{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-left{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 25px 0px 25px;
+}
+
+.bottom-left{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bubble-info-consultant, .bubble-info-pm{
+    background-color: #b21e2a;
+    border-radius: 50px;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bubble-info-consultant {
+    width: 45%;
+}
+
+.bubble-info-pm {
+    width: 30%;
+}
+
+.white-number{
+    font-weight: 30;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.white-text{
+    font-weight: 30;
+    font-size: 14px;
+    color: white;
+}
+
+.pie-chart-bg{
+    background-color: white;
+    border-radius: 5px;
+    height: 95%;
+    width: 95%;
+}
+
+.task-manager-dashboard{
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    position: relative;
+}
+
+.task-list-dashboard{
+    height: 100%;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.right-section-top{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-section-bottom{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.employee-list{
+    width: 95%;
+    height: 95%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: end;
+    border-radius: 5px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.assignee-list-dashboard{
+    height: 90%;
+    margin-top: -10px;
+}
+
+.employee-image-dashboard{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.employee-info-dashboard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.assignee-name{
+    margin-left: 5px;
+}
+
+.center-hours{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pie-chart{
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %}Projects{% endblock %}
+
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/sidebar-styles.css" rel="stylesheet">
+    <link href="/static/styles/project-information-styles.css" rel="stylesheet">
+    <link href="/static/styles/projects-styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+{% endblock %}
+
+{# Include page header #}
+{% block page_header %}Projects{% endblock %}
+
+    {# Include page content #}
+{% block page_content %}
+
+
+    <!--White Background-->
+    <div class="white-container">
+
+        <!--Grey Background-->
+        <div class="project-background-projects">
+
+         {% if session['perm'] == 'manager' %}
+           <!-- Section for New Project Tab-->
+             <div class="display-end">
+                <button class="add-project"  data-bs-toggle="modal" data-bs-target="#editProjectModal">Create Project</button>
+
+             </div>
+
+            {% endif %}
+
+        <ul class="list-group">
+            <!-- For loop to add more projects if projects are created-->
+            {% for project in projects %}
+            <!-- First section of projects-->
+            <li class="list-group-item">
+                <a class="no-link project-positioning" href="{{ url_for('project_information', project_id=project['project_id'])}}">
+                <div class="title-section">
+                    <p class="text">Project Title</p>
+                    <p class="fw-bold text">{{ project['description']}}</p>
+                </div>
+
+                <div class="calendar-section">
+                    <img class="calendar" src="/static/images/icons/calendar-red.svg" alt="Calendar Logo">
+                    <div class="title-section">
+                        <p class="text">Date Assigned</p>
+                        <p class="fw-bold text">{{ project['start_date'].strftime('%m/%d/%Y')}}</p>
+                    </div>
+                </div>
+
+                <div class="calendar-section">
+                    <div class="title-section">
+                        <p class="text">Date Due</p>
+                        <p class="fw-bold text">{{ project['end_date'].strftime('%m/%d/%Y') }}</p>
+                    </div>
+                </div>
+
+                {% if session['perm'] == 'manager' %}
+                    <div class="calendar-section">
+                        <img class="calendar" src="/static/images/icons/assignees-red.svg" alt="Calendar Logo">
+                        <div class="title-section">
+                            <p class="text">Assignees</p>
+                            <p class="fw-bold text">{{ project_assignments[project['project_id']]}}</p>
+                        </div>
+                    </div>
+                {% elif session['perm'] == 'project manager' %}
+                    <div class="calendar-section">
+                        <img class="calendar" src="/static/images/icons/dollar-sign-red.svg" alt="Calendar Logo">
+                        <div class="title-section">
+                            <p class="text">Budget</p>
+                            <p class="fw-bold text">{{  "${:,.2f}".format(project['budget']) }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="calendar-section">
+                        <img class="calendar" src="/static/images/icons/clock-red.svg" alt="Calendar Logo">
+                        <div class="title-section">
+                            <p class="text">Hours Worked</p>
+                            <p class="fw-bold text">{{ project_assignments[project.project_id] }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if project['stage_id'] == 1 %}
+                    <div class="blue rectangle">
+                        <p class="text white">{{ stages[project['stage_id']]}}</p>
+                    </div>
+                {% elif project['stage_id'] == 2 %}
+                    <div class="orange rectangle">
+                        <p class="text">{{ stages[project['stage_id']]}}</p>
+                    </div>
+                {% elif project['stage_id'] == 3 %}
+                    <div class="light-blue rectangle">
+                        <p class="text white">{{ stages[project['stage_id']]}}</p>
+                    </div>
+                {% elif project['stage_id'] == 4 %}
+                    <div class="purple rectangle">
+                        <p class="text white">{{ stages[project['stage_id']]}}</p>
+                    </div>
+                {% elif project['stage_id'] == 5 %}
+                    <div class="green rectangle">
+                        <p class="text">{{ stages[project['stage_id']]}}</p>
+                    </div>
+                {% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+
+
+
+    <!-- Edit Project Modal -->
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editProjectLabel">Create Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal content -->
+            <form action="{{ url_for('projects')}}" method="post">
+                <div class="modal-body">
+                    <div class="edit-project-modal-layout">
+                        <div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Start Date</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project End Date</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date"  required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Budget</label>
+                                <input type="number" class="form-control" id="budget" name="budget" placeholder="0,000.00" min="0" required>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact First Name</label>
+                                <input type="text" class="form-control" id="contact_first_name" name="contact_first_name" placeholder="First Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Last Name</label>
+                                <input type="text" class="form-control" id="contact_last_name" name="contact_last_name" placeholder="Last Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="email@email.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Phone</label>
+                                <input type="tel" class="form-control" id="contact_phone" name="contact_phone" minlength="10" maxlength="10" pattern="[0-9]{10}" placeholder="5555555555" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">First Contact Date</label>
+                                <input type="date" class="form-control" id="first_contact_date" name="first_contact_date" required >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="modal-button btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="modal-button save">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+        </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %}Project Information{% endblock %}
+
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/sidebar-styles.css" rel="stylesheet">
+    <link href="/static/styles/project-information-styles.css" rel="stylesheet">
+{% endblock %}
+
+{# Include page header #}
+{% block page_header %}Projects{% endblock %}
+
+{# Include page content #}
+{% block page_content %}
+<div class="project-background">
+    <div class="top-section">
+        <!-- Project Info -->
+        <div class="project-info">
+            <!-- Section Title -->
+            <p class="section-title">Project Info</p>
+
+            <!-- Project Info Details -->
+            <div class="project-info-text">
+                <div class="project-info-section-1">
+                    <p class="project-title">Title</p>
+                    <p class="project-text">{{ project['description'] }}</p>
+                    <p class="project-title">Start Date</p>
+                    <p class="project-text">{{ project['start_date'].strftime('%m/%d/%Y') }}</p>
+
+                    {% if session['perm'] == 'consultant' %}
+                        <p class="project-title">Date Assigned</p>
+                        <p class="project-text">{{ assignments['date'].strftime('%m/%d/%Y') }}</p>
+                    {% else %}
+                        <p class="project-title">Assignments</p>
+                        <p class="project-text">{{ assignments|length }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="project-info-section-2">
+                    <p class="project-title">Due Date</p>
+                    <p class="project-text">{{ project['end_date'].strftime('%m/%d/%Y') }}</p>
+                    <p class="project-title">Budget</p>
+                    <p class="project-text">{{  "${:,.2f}".format(project['budget']) }}</p>
+                </div>
+            </div>
+            {% if session['perm'] == 'manager' %}
+                <button class="add-task-button"  data-bs-toggle="modal" data-bs-target="#editProjectModal">Edit</button>
+            {% endif %}
+        </div>
+
+        <!-- Task Manager -->
+        <div class="task-manager">
+            <p class="section-title">Tasks</p>
+            <!-- List of tasks -->
+            <ol class="list-group list-group-numbered task-list">
+                <!-- First task -->
+                {% for task in tasks %}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{ task['task_content'] }}</div>
+                        <div class="task-date">{{ task['task_date'].strftime('%m/%d/%Y') }}</div>
+                    </div>
+                    <!-- Delete task button -->
+                    {% if session['perm'] in ['consultant', 'manager'] %}
+                        <a class="exit-button" href="{{ url_for('delete_task', task_id=task['task_id'], project_id=project['project_id'], page=2) }}">X</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+            {% if session['perm'] in ['consultant', 'manager'] %}
+                <button class="add-task-button" data-bs-toggle="modal" data-bs-target="#addTaskModal">+ Task</button>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="middle-section">
+        <!-- Section Title -->
+        <p class="section-title">Project Stage</p>
+        <form action="{{ url_for('project_information', project_id=project['project_id']) }}" method="post">
+            {% if session['perm'] in ['consultant', 'manager'] %}
+                <button class="update-project-button" type="submit">Update</button>
+            {% endif %}
+
+            <!-- Client Stage Progress Bar -->
+            <div class="project-stage-group">
+                {% for each_stage in stages %}
+                    <input class="stage-input" type="radio" value="{{ each_stage['stage_id'] }}" name="myRadio" id="myRadio{{ each_stage['stage_id'] }}" {{ 'checked' if project['stage_id'] == each_stage['stage_id'] }}> <!--checked if the correct project stage-->
+                    <label class="stage-label" for="myRadio{{ each_stage['stage_id'] }}">{{ each_stage['project_stage'] }}</label>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+
+    <div class="bottom-section">
+        <!-- Client Info -->
+        <div class="client-info">
+            <!-- Section Title -->
+            <p class="section-title">Client Info</p>
+            <div class="client-info-text">
+                <div>
+                    <p class="client-title">Name</p>
+                    <p class="client-text">{{ client['poc_first_name'] }} {{ client['poc_last_name'] }}</p>
+                    <p class="client-title">Email</p>
+                    <p class="client-text">{{ client['email'] }}</p>
+                </div>
+
+                <div>
+                    <p class="client-title">Phone</p>
+                    <p class="client-text">{{ client['poc_area_code'] + '-' + client['poc_phone'][:3] + '-' + client['poc_phone'][3:] if client['poc_phone'] else 'None'}}</p>
+                    <p class="client-title">First Contact</p>
+                    <p class="client-text">{{ client['first_contact_date'].strftime('%m/%d/%Y') }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% if session['perm'] == 'consultant' %}
+            <!-- Hours Info -->
+            <div class="hours-info">
+                <!-- Hours Icon -->
+                <p class="section-title">Hours</p>
+                <img class="clock-icon" src="/static/images/icons/clock-red.svg" alt="Clock icon">
+                <!-- Hours Text -->
+                <div class="hours-info-text">
+                    <div>
+                        <p class="hours-title">Hours Worked</p>
+                        <p class="hours-text">{{ assignments['hours_worked'] }} Hrs</p>
+                    </div>
+                <!-- Update Hours Icon -->
+                <a class="edit-icon" href="#" data-bs-toggle="modal" data-bs-target="#hoursModal"><img src="/static/images/icons/edit-gray.svg" alt="Edit icon"></a>
+            </div>
+        {% elif session['perm'] in ['manager','project manager'] %}
+            <!-- Assigned Employees Info -->
+            <div class="assignee-info">
+                <p class="section-title">Assigned Employees</p>
+                <!-- List of employees -->
+                <ol class="list-group assignee-list">
+                    <!-- Employee task -->
+                    {% for consultant in consultants %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold assignee-name">{{ consultant['first_name'] }} {{ consultant['last_name'] }}</div>
+                        </div>
+                        <!-- Remove assignee button -->
+                        {% if session['perm'] == 'manager' %}
+                            <a class="remove-employee-button" href="{{ url_for('delete_assignment', project_id=project['project_id'], consultant_id=consultant['consultant_id']) }}">X</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+
+                {% if session['perm'] == 'manager' %}
+                    <!-- Add Assignee Button -->
+                    <button class="add-assignee-button" data-bs-toggle="modal" data-bs-target="#addAssigneeModal">+ Assignee</button>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<!-- Add Task Modal -->
+<div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addTaskModalLabel">Add Task</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal content -->
+            <form action="{{ url_for('project_information', project_id=project['project_id']) }}" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="task_text" class="form-label">Task Content</label>
+                        <textarea class="form-control" id="task_text" name="task_text" rows="3" placeholder="Type here" required></textarea>
+                    </div>
+                </div>
+                <!-- Modal buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="modal-button btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="modal-button save">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Project Modal -->
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editProjectLabel">Edit or Delete Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal content -->
+            <form action="{{ url_for('project_information', project_id=project['project_id']) }}" method="post">
+                <div class="modal-body">
+                    <div class="edit-project-modal-layout">
+                        <div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Start Date</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" >
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project End Date</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date" >
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Budget</label>
+                                <input type="number" class="form-control" id="budget" name="budget" placeholder="0,000.00" min="0">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact First Name</label>
+                                <input type="text" class="form-control" id="contact_first_name" name="contact_first_name" placeholder="First Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Last Name</label>
+                                <input type="text" class="form-control" id="contact_last_name" name="contact_last_name" placeholder="Last Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contact_email" name="contact_email" placeholder="email@email.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Contact Phone</label>
+                                <input type="tel" class="form-control" id="contact_phone" name="contact_phone" maxlength="10" pattern="[0-9]{10}" placeholder="5555555555">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">First Contact Date</label>
+                                <input type="date" class="form-control" id="first_contact_date" name="first_contact_date" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal buttons -->
+                <div class="modal-footer">
+                    <a class="modal-button delete-project" href="{{ url_for('delete_project', project_id=project['project_id']) }}">Delete Project</a>
+                    <button type="button" class="modal-button btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="modal-button save">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Assignee Modal -->
+<div class="modal fade" id="addAssigneeModal" tabindex="-1" aria-labelledby="addAssigneeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addAssigneeModalLabel">Add Assignee</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal content -->
+            <div class="modal-body assignees-modal">
+                <ul class="add-assignee-list">
+                    {% for consultant in unassigned_consultants %}
+                    <li class="assignee-choice">
+                        <p class="emp-text">{{ consultant['first_name'] }} {{ consultant['last_name'] }}</p>
+                        <a href="{{ url_for('add_assignee', consultant_id=consultant['consultant_id'], project_id=project['project_id']) }}" class="modal-button add-to-project-button">Assign</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Modal buttons -->
+            <div class="modal-footer">
+                <button type="button" class="modal-button btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hours Modal -->
+<div class="modal fade" id="hoursModal" tabindex="-1" aria-labelledby="hoursModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="hoursModalLabel">Update Hours</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal content -->
+            <form action="{{ url_for('project_information', project_id=project['project_id']) }}" method="post">
+                <div class="modal-body">
+                    <!-- Hours form input -->
+                    <div class="mb-3">
+                        <label class="form-label">Hours</label>
+                        <input type="number" class="form-control" id="hours" name="hours" min="0" placeholder="{{ assignments['hours_worked'] }}" required>
+                    </div>
+                </div>
+                <!-- Modal buttons -->
+                <div class="modal-footer">
+                    <button type="button" class="modal-button btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="modal-button save">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

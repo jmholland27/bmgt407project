@@ -1,0 +1,77 @@
+/*Sidebar styles*/
+.sidebar{
+    width: 150px;
+    height: 100%;
+    background-color: #b21e2a;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.para-logo{
+    width: 90%;
+    margin-top: 16px;
+}
+
+.menu{
+    font-size: 16px;
+    font-family: Arial;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.white-line{
+    height: 1px;
+    width: 135px;
+    background-color: white;
+}
+
+.nav-items{
+    margin-top: 80px;
+    position: absolute;
+}
+
+
+.nav-link{
+    width: 135px;
+    height: 50px;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    margin-top: 8px;
+}
+
+.nav-link:hover{
+    background-color: #ad4b54;
+}
+
+.nav-icon{
+    height: 36px;
+    margin-top: 7px;
+    margin-left: 7px;
+}
+
+.nav-text{
+    font-size: 16px;
+    font-family: Arial;
+    color: white;
+    margin-left: 50px;
+    margin-top: -30px;
+}
+
+.active-page{
+    background-color: white;
+}
+
+.active-page p{
+    color: #b21e2a;
+}
+.flash-message{
+    z-index: 200;
+}
+.right-close{
+    float: right;
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %} Employees {% endblock %}
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/sidebar-styles.css" rel="stylesheet">
+    <link href="/static/styles/project-information-styles.css" rel="stylesheet">
+    <link href="/static/styles/profile-styles.css" rel="stylesheet">
+
+{% endblock %}
+{# Include page header #}
+{% block page_header %}Employees{% endblock %}
+
+{# Include page content #}
+{% block page_content %}
+
+        <!-- Employee information -->
+        <div class="container">
+        {% for group in employees %}
+            <div class="row">
+                {% for employee in group %}
+               <div class="emp-profile-text col">
+                <img class="employee-image" src="/static/images/employees/{{ employee['image'] if employee['image'] else 'profile-icon.png' }}" alt="Employee profile picture">
+                  <div><a href= "{{ url_for('projects')}}" class="btn btn-danger">Add to Projects</a></div>
+                    <p class="name-info">{{ employee['first_name'] }} {{ employee['last_name'] }}</p>
+                    <p class="basic-info">{{ employee['email'] }}</p>
+                    <p class="basic-info">{{'Projects:'}} {{ assignments[employee.consultant_id] }}</p>
+                  </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+{% endblock %}

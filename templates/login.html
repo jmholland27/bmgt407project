@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %}Login{% endblock %}
+
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/login.css" rel="stylesheet">
+    <link href="/static/styles/navbar-styles.css" rel="stylesheet">
+{% endblock %}
+
+{# Include page content #}
+{% block page_content %}
+<form action="{{ url_for('login') }}" method="post">
+    <div class="login-background">
+        <!-- Form content and header -->
+        <div class="header">
+            <h1 class="header">Login</h1>
+        </div>
+
+        <!-- Email Field-->
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" id='email' name='email' placeholder="employee@para.com">
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id='password' name='password' minlength="8" placeholder="*****">
+        </div>
+
+        <!-- Login to Consultant Dashboard -->
+        <button type="submit" class="login-button">Login</button>
+
+</div>
+</form>
+{% endblock %}
+

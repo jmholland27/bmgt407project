@@ -1,0 +1,20 @@
+.bg-red{
+    background-color: #b21e2a;
+}
+
+.brandname{
+    display: inline;
+}
+
+.logo{
+    width: 30px;
+}
+
+.logoff-position{
+    float: right;
+}
+
+.nav-item {
+    color: #b11e2a;
+    background-color: gray;
+}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{# Include page title #}
+{% block page_title %}Profile{% endblock %}
+
+{# Include additional styles #}
+{% block styles %}
+    <link href="/static/styles/sidebar-styles.css" rel="stylesheet">
+    <link href="/static/styles/project-information-styles.css" rel="stylesheet">
+    <link href="/static/styles/profile-styles.css" rel="stylesheet">
+{% endblock %}
+
+{# Include page header #}
+{% block page_header %}Profile{% endblock %}
+
+{# Include page content #}
+{% block page_content %}
+<div class="profile-background">
+    <!-- Employee information -->
+    <div class="profile">
+        <img class="employee-image" src="/static/images/employees/{{ current_user['image'] if current_user['image'] else 'profile-icon.png' }}" alt="Employee profile picture">
+        <div class="profile-text">
+            <p class="name-info">{{ current_user['first_name'] }} {{ current_user['last_name'] }}</p>
+            <p class="basic-info">{{ session['perm'].title() }}</p>
+            <p class="basic-info">{{ current_user['email'] }}</p>
+            <p class="basic-info">{{ current_user['area_code'] + '-' + current_user['phone'][:3] + '-' + current_user['phone'][3:] }}</p>
+        </div>
+    </div>
+
+    <!-- Input form to change employee information -->
+    <div class="new-profile">
+        <form action="{{ url_for('profile') }}" method="post" enctype="multipart/form-data">
+            <!-- First name field -->
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
+            </div>
+
+            <!-- Last name field -->
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <!-- Phone field -->
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" minlength="10" maxlength="10" pattern="[0-9]{10}" placeholder="5555555555">
+            </div>
+
+            <!-- Upload picture button -->
+            <div class="mb-3 upload-section">
+                <label for="profile_pic" class="form-label">Upload Picture</label>
+                <input class="form-control form-control-sm" id="profile_pic" name="profile_pic" type="file">
+            </div>
+
+            <!-- Delete current picture button -->
+            <!-- use a radio button for this from bootstrap -->
+            <!-- use a radio button for this from bootstrap -->
+           <div class="form-check">
+               <input class="form-check-input" type="checkbox" value="option1" id="delete_profile_pic" name="delete_profile_pic">
+               <label class="form-check-label" for="delete_profile_pic">Delete Picture</label>
+           </div>
+
+            <!-- Update profile button -->
+            <button type="submit" class="profile-button">Update Profile</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

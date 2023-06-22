@@ -1,0 +1,372 @@
+.page-content{
+    margin-left: 150px;
+}
+
+.profile-header {
+    margin: auto;
+    width: 100%;
+    height: 54px;
+    background-color: #e1e1e1;
+    padding-top: 12px;
+}
+
+.header{
+    color: #b21e2a;
+    font-size: 28px;
+    font-family: Arial;
+    margin-left: 24px;
+}
+
+
+p{
+    font-family: Arial;
+}
+
+.project-background{
+    margin: auto;
+    margin-top: 30px;
+    width: 95%;
+    height: 550px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-section{
+    width: 95%;
+    height: 275px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title{
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: bold;
+    color: #b21e2a;
+    margin: 0px;
+    position: absolute;
+    top: 3px;
+    left: 10px;
+}
+
+.project-info {
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    max-width: 350px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.project-info-text{
+    width: 70%;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.project-title, .client-title, .hours-title, .emp-text{
+    font-weight: bolder;
+    font-size: 14px;
+    margin: 0px;
+}
+
+.emp-text{
+    margin-left: 16px;
+}
+
+.project-text, .client-text, .hours-text{
+    font-size: 14px;
+}
+
+.task-manager{
+    width: 60%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    position: relative;
+}
+
+.list-group{
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.task-list{
+    height: 70%;
+    margin-top: 25px;
+}
+
+.task-list2{
+    margin-top: 50px;
+}
+
+.pm-task-list{
+    height: 90%;
+    margin-top: 30px;
+}
+
+.task-date{
+    color: gray;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.exit-button, .remove-employee-button{
+    font-family: Arial;
+    color: gray;
+    border: none;
+    background: none;
+    text-decoration: none;
+    transition: opacity 0.15s;
+}
+
+.add-task-button {
+    background-color: #b21e2a;
+    color: white;
+    border: none;
+    padding: 8px 12px 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+.add-task-button:hover, .add-assignee-button:hover,
+.exit-button:hover, .remove-employee-button:hover,
+.modal-button:hover, .update-project-button:hover{
+    opacity: 0.8;
+}
+
+.exit-button:hover, .remove-employee-button:hover{
+    color: gray;
+}
+
+.add-to-project-button:hover, .delete-project:hover{
+    color: white;
+}
+
+.add-task-button:active, .add-assignee-button:active,
+.exit-button:active, remove-employee-button:active,
+.modal-button:active, .update-project-button:active{
+    opacity: 0.5;
+}
+
+.middle-section{
+    width: 95%;
+    height: 100px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.project-stage-group{
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.stage-input{
+    display: none;
+}
+
+.stage-label{
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    font-size: 14px;
+    font-family: Arial;
+    background-color: white;
+    color: #b21e2a;
+    cursor: pointer;
+    transition: background 0.1s;
+    width: 100%;
+}
+
+.stage-label:not(:last-of-type){
+    border-right: 2px solid #eaa6aa;
+}
+
+.stage-input:checked + .stage-label{
+    background: #b21e2a;
+    color: white;
+}
+
+.bottom-section{
+    width: 95%;
+    height: 175px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.client-info, .hours-info, .assignee-info{
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    max-width: 325px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.client-info-text, .hours-info-text{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 20px 0px 20px ;
+}
+
+.clock-icon{
+    width: 20%;
+    max-width: 200px;
+    margin-left: 10px;
+}
+
+.edit-icon{
+    width: 20%;
+    max-width: 200px;
+    transition: opacity 0.15s;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: -10px;
+}
+
+.edit-icon:hover{
+    opacity: 0.5;
+}
+
+.employee-info-text{
+    width: 60%;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin: 0px 20px 0px 20px;
+}
+
+.add-assignee-button, .update-project-button{
+    background-color: #b21e2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    position: absolute;
+}
+
+.add-assignee-button{
+    bottom: 5px;
+    right: 5px;
+    padding: 1px 12px 3px 12px;
+}
+
+.update-project-button{
+    right: 5px;
+    top: 1px;
+    padding: 1px 12px 2px 12px;
+}
+
+.remove-employee-button, .assignee-name{
+    font-size: 12px;
+    padding: 0px;
+}
+
+.assignee-list{
+    height: 60%;
+    margin-top: -10px;
+}
+
+.pm-assignee-list{
+    height: 90%;
+    margin-top: 20px;
+}
+
+.modal-button {
+    background-color: #b21e2a;
+    color: white;
+    border: none;
+    padding: 8px 12px 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.save{
+    background-color: #229d22;
+}
+
+.btn-secondary{
+    background-color: gray;
+}
+
+.edit-project-modal-layout{
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-assignee-list{
+    width: 95%;
+    list-style: none;
+}
+
+.assignees-modal{
+    overflow-y: scroll;
+    max-height: 400px;
+}
+
+.assignee-choice{
+    width: 100%;
+    height: 75px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.assignee-pic{
+    border-radius: 50px;
+    height: 80%;
+    margin-left: 10px;
+}
+
+.add-to-project-button{
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.delete-project{
+    text-decoration: none;
+}

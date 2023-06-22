@@ -1,0 +1,836 @@
+.page-content{
+    margin-left: 150px;
+}
+
+.profile-header {
+    margin: auto;
+    width: 100%;
+    height: 54px;
+    background-color: #e1e1e1;
+    padding-top: 12px;
+}
+
+.header{
+    color: #b21e2a;
+    font-size: 28px;
+    font-family: Arial;
+    margin-left: 24px;
+}
+
+.p{
+    font-family: Arial;
+}
+
+.project-background{
+    margin: auto;
+    margin-top: 30px;
+    width: 95%;
+    height: 550px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+  display: grid;
+    align-items: center;
+}
+
+.left-half {
+  grid-column: 1;
+  align-items: center;
+}
+
+.right-half {
+  grid-column: 2;
+  align-items: center;
+}
+
+.section-title{
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: bold;
+    color: #b21e2a;
+    margin: 0px;
+    position: absolute;
+    top: 3px;
+    left: 10px;
+}
+
+.project-info{
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    max-width: 350px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.unassigned-title, .assigned-title, .utilization-title{
+    font-weight: bolder;
+    font-size: 14px;
+    margin: 0px;
+}
+
+.unassigned-text, .assigned-text, .utilization-text{
+    font-size: 14px;
+}
+
+.task-manager{
+    width: 60%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    position: relative;
+}
+
+.task-list{
+    height: 70%;
+    margin-top: 25px;
+}
+
+.pm-task-list{
+    height: 90%;
+    margin-top: 30px;
+}
+
+.consultantdashboardtasks{
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.unassigned-info, .assigned-info, .utilization-rate{
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    max-width: 325px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.unassigned-info-text, .assigned-info-text, .utilization-rate-text{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 20px 0px 20px ;
+}
+
+ .red-curved-rectangles {
+     position:absolute;
+     top:15%;
+     left: 2.5%;
+  border-radius: 25px;
+  background: #b21e2a;
+  width: 95%;
+  height: 70%;
+}
+
+ .white-curved-rectangles{
+      position:absolute;
+     top:15%;
+     left: 2.5%;
+  border-radius: 25px;
+  background: white;
+  width: 95%;
+  height: 70%;
+}
+
+
+ .number-placement{
+     position: absolute;
+     font-weight: 60;
+     right: 50%;
+     bottom: 30%;
+     font-size: 40px;
+     color: white;
+
+ }
+
+ .number-placement1, .number-placement2{
+     position: absolute;
+     font-weight: 30;
+     margin-left: 20px;
+     right: 50%;
+     bottom: 30%;
+     font-size: 20px;
+     color: white;
+
+ }
+
+
+ .unassigned2{
+     position: absolute;
+     font-size: 5px;
+     font-weight: 20;
+     color: white;
+     bottom: 10%;
+     right: 20%;
+ }
+
+.assigned2{
+     position: absolute;
+     font-size: 5px;
+     font-weight: 20;
+     color: white;
+     bottom: 10%;
+     right: 30%;
+ }
+
+.utilization-percent{
+    position:absolute;
+     font-size: 25px;
+     color: white;
+     bottom: 30%;
+     right: 30%;
+ }
+
+.utilization-rate2{
+    position:absolute;
+     font-size: 20px;
+     color: white;
+     bottom: 5%;
+     right: 15%;
+ }
+
+
+.profile-background-1{
+    position: relative;
+    width: 1230px;
+    height: 450px;
+    background: white;
+    bottom: -30px;
+}
+
+ .title-placement{
+   position: absolute;
+   bottom: 25%;
+   right: 80%;
+
+ }
+
+  .sample-project{
+     position: absolute;
+     bottom: -3%;
+     right:65%;
+     font-weight: bold;
+
+ }
+
+.logo-placement{
+    position: absolute;
+    width: 10%;
+    left: 2%;
+    bottom: 8%;
+
+ }
+
+.name-placement{
+    position: absolute;
+    left: 15%;
+    bottom: 25%;
+    font-weight: bold;
+
+}
+
+.email-placement{
+    position: absolute;
+    left: 15%;
+    bottom: -5%;
+    color: grey;
+}
+
+.calendar-icons{
+    position:absolute;
+    width: 10%;
+    height: 70%;
+    right: 25%;
+    bottom: 15%;
+}
+
+ .date-assigned-placement{
+    position: absolute;
+    right: 8%;
+    bottom: 27%;
+
+ }
+
+.date-placement{
+position: absolute;
+    right: 21%;
+    bottom: 6%;
+}
+
+.date-due-placement{
+    position: absolute;
+    right: 13%;
+    bottom: 27%;
+}
+
+.due-placement{
+  position: absolute;
+  right: 10%;
+  bottom: 0%;
+
+}
+
+.clock{
+    position:absolute;
+    width: 28%;
+    left: 0%;
+    bottom: 24%;
+}
+.hours-worked{
+    position: absolute;
+    left: 32%;
+    bottom: 28%;
+
+}
+.amt-hours-placement{
+    position:absolute;
+    left:32%;
+    bottom: 8%;
+}
+
+
+
+.stage-placement {
+    position: absolute;
+    right: 30%;
+    bottom: 20%;
+    color: white;
+
+}
+
+.section1{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 50%;
+    height: 25%;
+    background-color: white;
+}
+
+.section2{
+    position: absolute;
+    left: 100%;
+    top: 10%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.section3{
+    position: absolute;
+    left: 0%;
+    top: 100%;
+    width: 100%;
+    height: 140%;
+    background-color: green;
+}
+
+
+
+.horizontal1{
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    background-color: #e1e1e1;
+
+}
+
+.horizontal2{
+    position: absolute;
+    width: 100%;
+    height: 41%;
+    background-color: #e1e1e1;
+    left: 0%;
+    top: 15%;
+}
+
+.horizontal3{
+    position: absolute;
+    width: 100%;
+    height: 41%;
+    background-color: #e1e1e1;
+    left: 0%;
+    top: 56%;
+
+}
+
+.upcoming-horizontal1{
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: #e1e1e1;
+    left: 0%;
+    top: 15%;
+
+}
+
+.upcoming-horizontal2{
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: #e1e1e1;
+    left: 0%;
+    top: 45%;
+
+}
+
+.upcoming-horizontal3{
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background-color: #e1e1e1;
+    left: 0%;
+    top: 75%;
+
+}
+
+.project-square{
+      position:absolute;
+     top:15%;
+     left: 55%;
+  background: white;
+  width: 40%;
+  height: 70%;
+}
+
+.project-horizontal1{
+    position:absolute;
+     top: 0%;
+     left: 0%;
+  background: white;
+  width: 100%;
+  height: 25%;
+}
+
+.project-horizontal2{
+    position:absolute;
+     top: 25%;
+     left: 0%;
+  background: white;
+  width: 100%;
+  height: 25%;
+
+}
+
+.project-horizontal3{
+    position:absolute;
+     top: 50%;
+     left: 0%;
+  background: white;
+  width: 100%;
+  height: 25%;
+}
+
+.project-horizontal4{
+    position:absolute;
+     top: 75%;
+     left: 0%;
+  background: white;
+  width: 100%;
+  height: 25%;
+}
+
+
+
+.small-project-square{
+    position:absolute;
+     top: 50%;
+     left: 25%;
+  background: green;
+  width: 10%;
+  height: 25%;
+}
+
+.project-square2{
+    position:absolute;
+     top: 50%;
+     left: 25%;
+  background: lightblue;
+  width: 10%;
+  height: 25%;
+}
+
+.project-square3{
+    position:absolute;
+     top: 50%;
+     left: 25%;
+  background: blue;
+  width: 10%;
+  height: 25%;
+}
+
+.project-square4{
+    position:absolute;
+     top: 50%;
+     left: 25%;
+  background: orange;
+  width: 10%;
+  height: 25%;
+}
+
+
+
+.amt-projects{
+    position: absolute;
+    font-size: 15px;
+    bottom: 5%;
+    left: 40%;
+    font-weight: bold;
+}
+
+
+
+.top-consultants-text{
+    position: absolute;
+    font-size: 20px;
+    color: #b21e2a;
+    left: 2%;
+    font-weight: bold;
+}
+
+.upcoming-text{
+    position: absolute;
+    font-size: 20px;
+    color: #b21e2a;
+    left: 2%;
+    font-weight: bold;
+
+}
+
+.hours-placement{
+    position: absolute;
+    font-size: 25px;
+    right: 5%;
+    top: 20%;
+}
+
+
+.section4{
+    position: absolute;
+    left: -100%;
+    top: 75%;
+    width: 98%;
+    height: 172%;
+    background-color: #e1e1e1 ;
+    border-radius: 25px;
+
+}
+
+.circle{
+    position: relative;
+    right: -5%;
+    top: 25%;
+    height: 50%;
+  width: 45%;
+  background-color: indigo;
+  border-radius: 50%;
+
+}
+
+.vertical1{
+    position:absolute;
+    left:0%;
+    bottom:0%;
+    width: 33%;
+    height: 100%;
+    background-color: white;
+}
+.vertical2{
+    position: absolute;
+    left:33%;
+    bottom:0%;
+    width:33%;
+    height:100%;
+    background-color: white;
+
+}
+
+.vertical3{
+       position:absolute;
+    left:66%;
+    bottom: 0%;
+    width:33%;
+    height:100%;
+    background-color:white;
+}
+
+.vertical4{
+   position: absolute;
+    left:40%;
+    bottom:0%;
+    width:15%;
+    height:100%;
+    background-color: white;
+    border-radius:25px;
+}
+
+.vertical5{
+       position: absolute;
+    left:55%;
+    bottom:0%;
+    width:15%;
+    height:100%;
+    background-color: white;
+    border-radius:25px;
+
+}
+
+.vertical6{
+       position: absolute;
+    left:70%;
+    bottom:5%;
+    width:30%;
+    height:89%;
+    background-color: white;
+    border-radius:25px;
+}
+
+.blue-curved-rectangle {
+    border-radius: 25px;
+    background: darkblue;
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    left: 0%;
+    bottom: -22%;
+}
+
+.light-blue-curved-rectangle {
+    border-radius: 25px;
+    background: lightblue;
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    left: 0%;
+    bottom: -22%;
+}
+
+.stage-placement-2 {
+    position: absolute;
+    right: 35%;
+    bottom: 20%;
+    color: white;
+
+}
+
+.orange-curved-rectangle{
+    border-radius: 25px;
+    background: orange;
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    left: 0%;
+    bottom: -22%;
+}
+
+.stage-placement-3 {
+    position: absolute;
+    right: 38%;
+    bottom: 20%;
+    color: white;
+
+}
+
+.green-curved-rectangle{
+    border-radius: 25px;
+    background: green;
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    left: 0%;
+    bottom: -22%;
+}
+
+.stage-placement-4{
+    position: absolute;
+    right: 40%;
+    bottom: 20%;
+    color: white;
+
+}
+.piechart {
+        margin-top: 100px;
+        margin-left: 60px;
+        display: block;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-image: conic-gradient(
+            pink 70deg,
+            lightblue 0 235deg,
+            orange 0);
+
+    }
+
+.task-manager{
+    width: 60%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    position: relative;
+}
+
+.list-group{
+    width: 100%;
+    height: 250%;
+}
+
+.task-list{
+    height: 250%;
+    margin-top: 25px;
+}
+
+.pm-task-list{
+    height: 90%;
+    margin-top: 30px;
+}
+
+.exit-button, .remove-employee-button{
+    font-family: Arial;
+    color: gray;
+    border: none;
+    background: none;
+    transition: opacity 0.15s;
+}
+
+.add-task-button {
+    background-color: #b21e2a;
+    color: white;
+    border: none;
+    padding: 8px 12px 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+.add-task-button:hover, .add-assignee-button:hover,
+.exit-button:hover, .remove-employee-button:hover,
+.modal-button:hover{
+    opacity: 0.8;
+}
+
+.add-task-button:active, .add-assignee-button:active,
+.exit-button:active, remove-employee-button:active,
+.modal-button:active{
+    opacity: 0.5;
+}
+
+.stage-input{
+    display: none;
+}
+
+.stage-label{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 14px;
+    font-family: Arial;
+    background-color: white;
+    color: #b21e2a;
+    cursor: pointer;
+    transition: background 0.1s;
+    width: 100%;
+}
+
+.stage-label:not(:last-of-type){
+    border-right: 2px solid #eaa6aa;
+}
+
+.stage-input:checked + .stage-label{
+    background: #b21e2a;
+    color: white;
+}
+
+.project-info, .hours-info{
+    width: 37%;
+    height: 90%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 3;
+    max-width: 325px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.project-info-text, .hours-info-text{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 20px 0px 20px ;
+}
+
+.clock-icon{
+    width: 20%;
+    max-width: 200px;
+    margin-left: 10px;
+}
+.clock-icona{
+    width: 20%;
+    height: 100px;
+    max-width: 200px;
+    margin-left: 30px;
+}
+.clipboard-icon{
+    width: 20%;
+    max-width: 200px;
+    margin-left: 10px;
+}
+.clipboard-icona{
+    width: 20%;
+    height: 100px;
+    max-width: 200px;
+    margin-left: 30px;
+}
+.edit-icon{
+    width: 20%;
+    max-width: 200px;
+    transition: opacity 0.15s;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: -10px;
+}
+
+.edit-icon:hover {
+    opacity: 0.5;
+}
+
+.fw-bold {
+    margin-left: 50px;
+}
+

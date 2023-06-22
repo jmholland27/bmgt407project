@@ -1,0 +1,78 @@
+{# Display correct navbar based on logged in status of the user #}
+{% if request.url_rule.rule in ['/login','/signup'] or session['perm'] == '' %}
+
+<!-- Navigation bar -->
+<div class="navbar navbar-dark navbar-expand-lg bg-red">
+    <div class="container-fluid">
+
+        <!-- Navigation bar logo with brand name -->
+        <a class="navbar-brand" href="{{ url_for('login') }}">
+            <img src="/static/images/logos/para-logo-white.png" alt="Logo" class="d-inline-block align-text-top logo">
+            <p class="brandname">PARA</p>
+        </a>
+
+        <!-- Navigation pages -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link {% if request.url_rule.rule == url_for('login') %}active{% endif %}" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-link {% if request.url_rule.rule == url_for('signup') %}active{% endif %}" href="{{ url_for('signup') }}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<!-- Sidebar navigation -->
+<div class="sidebar">
+    <!-- Company logo -->
+    <img src="/static/images/logos/para-logo-full.svg" alt="Logo" class="para-logo">
+
+    <!-- Navigation tabs -->
+    <div class="nav-items">
+        <div>
+            <p class="menu">Menu</p>
+            <div class="white-line"></div>
+        </div>
+
+            <a class="{% if request.url_rule.rule == url_for('dashboard') %}active-page{% endif %} nav-link" href="{{ url_for('dashboard') }}">
+                <img src="/static/images/icons/dashboard-{% if request.url_rule.rule == url_for('dashboard') %}red{% else %}white{% endif %}.svg" alt="Dashboard navigation icon" class="nav-icon">
+                <p class="nav-text">Dashboard</p>
+            </a>
+
+        {% if session['perm'] == 'manager' %}
+
+            <a class="{% if request.url_rule.rule == url_for('employees') %}active-page{% endif %} nav-link" href="{{ url_for('employees') }}">
+                <img src="/static/images/icons/suitcase-{% if request.url_rule.rule == url_for('employees') %}red{% else %}white{% endif %}.svg" alt="Profile navigation icon" class="nav-icon">
+                <p class="nav-text">Employees</p>
+            </a>
+
+        {% elif session['perm'] == 'project manager' %}
+
+
+            <a class="{% if request.url_rule.rule == url_for('employee_metrics') %}active-page{% endif %} nav-link" href="{{ url_for('employee_metrics') }}">
+                <img src="/static/images/icons/suitcase-{% if request.url_rule.rule == url_for('employee_metrics') %}red{% else %}white{% endif %}.svg" alt="Profile navigation icon" class="nav-icon">
+                <p class="nav-text">Metrics</p>
+            </a>
+
+        {% endif %}
+
+            <a class="{% if request.url_rule.rule[:9] == url_for('projects') %}active-page{% endif %} nav-link" href="{{ url_for('projects') }}">
+                <img src="/static/images/icons/projects-{% if request.url_rule.rule[:9] == url_for('projects') %}red{% else %}white{% endif %}.svg" alt="Projects navigation icon" class="nav-icon">
+                <p class="nav-text">Projects</p>
+            </a>
+
+            <a class="{% if request.url_rule.rule == url_for('profile') %}active-page{% endif %} nav-link" href="{{ url_for('profile') }}">
+                <img src="/static/images/icons/profile-{% if request.url_rule.rule == url_for('profile') %}red{% else %}white{% endif %}.svg" alt="Profile navigation icon" class="nav-icon">
+                <p class="nav-text">Profile</p>
+            </a>
+    </div>
+
+    <!-- Logoff tab -->
+    <a class="nav-link" href="{{ url_for('logout') }}">
+        <img src="/static/images/icons/logoff-white.svg" alt="Logoff icon" class="nav-icon">
+        <p class="nav-text">Logoff</p>
+    </a>
+</div>
+
+{% endif %}
